@@ -97,22 +97,29 @@ namespace Exercise9C_NumberGame
                 Console.WriteLine($"Guess: {center}");
                 input = int.Parse(Console.ReadLine());
 
-                if (input == 1)
+                if (input == 1 || input == 2 || input == 3)
                 {
-                    right = center - 1;                    
+                    if (input == 1)
+                    {
+                        right = center - 1;                    
+                    }
+                    else if (input == 2)
+                    {
+                        left = center + 1;
+                    }
+                    else if (input == 3)
+                    {
+                        total += iterations;
+                        count += 1;
+                        double avg = total / count;
+                        Console.WriteLine($"Computer got it right, taking {iterations},  average is: {avg}");
+                        cont = false;
+                    }
                 }
-                else if (input == 2)
+                else
                 {
-                    left = center + 1;
-                }
-                else if (input == 3)
-                {
-                    total += iterations;
-                    count += 1;
-                    double avg = total / count;
-                    Console.WriteLine($"Computer got it right, taking {iterations},  average is: {avg}");
-                    cont = false;
-                }
+                    Console.WriteLine("No valid input detected");
+                }                
             }           
         }
 
