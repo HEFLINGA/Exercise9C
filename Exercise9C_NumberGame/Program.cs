@@ -10,6 +10,9 @@ namespace Exercise9C_NumberGame
     {
         static void Main(string[] args)
         {
+            BisectionAlgorithm b = new BisectionAlgorithm();
+
+            b.Run();
         }
     }
 }
