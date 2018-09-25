@@ -79,7 +79,7 @@ namespace Exercise9C_NumberGame
                 }                
             }            
         }
-        private void CompPlaysGuesser()
+        private void CompPlaysGuesser(int num)
         {
             iterations = 0;
             int[] list = new int[100];
@@ -164,10 +164,13 @@ namespace Exercise9C_NumberGame
         public void RunCompPlays()
         {
             string answer = "";
+            int num = 0;
             bool again = true;
             do
-            {
-                CompPlaysGuesser();
+            {                
+                // TODO add number you want comp to guess
+                Console.WriteLine("Input a number! (this will just be to help you remeber it).");
+                CompPlaysGuesser(num);
                 Console.WriteLine("Go again? Y for yes, N for no.");
                 answer = Console.ReadLine().ToLower();
                 if (answer == "y")
