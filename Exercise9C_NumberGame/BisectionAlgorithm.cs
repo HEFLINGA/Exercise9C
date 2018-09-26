@@ -91,11 +91,13 @@ namespace Exercise9C_NumberGame
 
             bool cont = true;
             int left = 0;
-            int right = list.Length;            
+            int right = list.Length;
 
             while (left <= right && cont == true)
             {
                 int center = left + (right - left) / 2;
+                
+                
                 iterations++;
                 Console.WriteLine($"Your number: {num}");
                 Console.WriteLine("1. for to high \n2. for to low. \n3. for JUUSTT RIGHT!");
@@ -106,7 +108,7 @@ namespace Exercise9C_NumberGame
                 {
                     if (input == 1)
                     {
-                        right = center - 1;                    
+                        right = center - 1;
                     }
                     else if (input == 2)
                     {
