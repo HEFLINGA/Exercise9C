@@ -86,6 +86,7 @@ namespace Exercise9C_NumberGame
         private void CompPlaysGuesser(int num)
         {
             iterations = 0;
+            int check = 0;
             int[] list = new int[100];
             int input = 0;
 
@@ -97,11 +98,19 @@ namespace Exercise9C_NumberGame
             {
                 int center = left + (right - left) / 2;
                 
-                
                 iterations++;
+                Console.Clear();
                 Console.WriteLine($"Your number: {num}");
                 Console.WriteLine("1. for to high \n2. for to low. \n3. for JUUSTT RIGHT!");
-                Console.WriteLine($"Guess: {center}");
+                Console.WriteLine($"Computers Guess: {center}");
+                Console.WriteLine("Rest of current list: ");
+                for (int i = center; i < right; i++)
+                {
+                    list[i] = i + 1;
+                    check = list[i];
+                    Console.Write($"{check} ");                    
+                }
+                Console.WriteLine("");
                 input = int.Parse(Console.ReadLine());
 
                 if (input == 1 || input == 2 || input == 3)
