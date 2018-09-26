@@ -14,13 +14,14 @@ namespace Exercise9C_NumberGame
             int input;
             BisectionAlgorithm b = new BisectionAlgorithm();
             do
-            {
-                Console.WriteLine("Basic Bisection Algorithm: 1. " +
-                    "\n\nGuess my number, human plays: 2." +
-                    "\n\nGuess my number, computer plays: 3.");
+            {                
+                Console.WriteLine("1: Basic Bisection Algorithm." +
+                    "\n\n2: Guess my number, human plays" +
+                    "\n\n3: Guess my number, computer plays" +
+                    "\n\n99: Exit");
                 input = int.Parse(Console.ReadLine());
 
-                if (input == 1 || input == 2 || input == 3)
+                if (input == 1 || input == 2 || input == 3 || input == 99)
                 {
                     switch (input)
                     {
@@ -33,6 +34,9 @@ namespace Exercise9C_NumberGame
                         case 3:
                             b.RunCompPlays();
                             break;
+                        case 99:
+                            cont = false;
+                            break;
                     }
                 }
                 else
@@ -42,8 +46,9 @@ namespace Exercise9C_NumberGame
                 }
                 
             } while (cont == true);
-            
-            
+            Console.WriteLine("Have a nice day!");
+            Console.WriteLine("Press 'enter' to exit..");
+            Console.ReadLine();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Exercise9C_NumberGame
             while (guessedIt == false)
             {
                 input = int.Parse(Console.ReadLine());
-                if (input > 0 || input <= 1000)
+                if (input > 0 && input <= 1000)
                 {
                     if (input > compInput)
                     {
@@ -75,7 +75,11 @@ namespace Exercise9C_NumberGame
                 }
                 else
                 {
-                    Console.WriteLine("No valid input");
+                    Console.WriteLine("No valid input" +
+                        "\nPress 'enter' to continue..");
+                    Console.ReadLine();
+                    Console.Clear();
+                    break;
                 }                
             }            
         }
@@ -93,6 +97,7 @@ namespace Exercise9C_NumberGame
             {
                 int center = left + (right - left) / 2;
                 iterations++;
+                Console.WriteLine($"Your number: {num}");
                 Console.WriteLine("1. for to high \n2. for to low. \n3. for JUUSTT RIGHT!");
                 Console.WriteLine($"Guess: {center}");
                 input = int.Parse(Console.ReadLine());
@@ -127,16 +132,26 @@ namespace Exercise9C_NumberGame
         {
             int[] list = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int input = 0;
+            Console.Clear();
             Console.WriteLine("Please enter your number Between 1 and 10");
             input = int.Parse(Console.ReadLine());
 
             if (input <= 0 || input > 10)
             {
                 Console.WriteLine("No valid input");
+                Console.WriteLine("Press 'enter' to continue");
+                Console.ReadLine();
+                Console.Clear();
             }
             else if(input > 0 && input <= 10)
             {
-                Console.WriteLine($"Your number was {BisectionAlg(list, input)}, it took {iterations} iterations."); 
+                Console.WriteLine($"Your number was {BisectionAlg(list, input)}, it took {iterations} iterations.");
+                Console.WriteLine("Press 'enter' to continue");
+                Console.ReadLine();
+                Console.Clear();
+                iterations = 0;
+                total = 0;
+                count = 0;
             }            
         }
         public void RunHumanPlays()
@@ -145,6 +160,7 @@ namespace Exercise9C_NumberGame
             bool again = true;
             do
             {
+                Console.Clear();
                 Random rnd = new Random();
                 int compInput = rnd.Next(1, 1000);
                 HumPlaysGuesser(compInput);
@@ -156,7 +172,18 @@ namespace Exercise9C_NumberGame
                 }
                 else if (answer == "n")
                 {
+                    Console.Clear();
+                    iterations = 0;
+                    total = 0;
+                    count = 0;
                     again = false;
+                }
+                else
+                {
+                    Console.WriteLine("No valid input" +
+                        "\nPress 'enter' to continue..");
+                    Console.ReadLine();
+                    Console.Clear();
                 }
             } while (again == true);
             
@@ -166,23 +193,60 @@ namespace Exercise9C_NumberGame
             string answer = "";
             int num = 0;
             bool again = true;
-            do
-            {                
-                // TODO add number you want comp to guess
-                Console.WriteLine("Input a number! (this will just be to help you remeber it).");
-                CompPlaysGuesser(num);
-                Console.WriteLine("Go again? Y for yes, N for no.");
-                answer = Console.ReadLine().ToLower();
-                if (answer == "y")
-                {
-                    again = true;
-                }
-                else if (answer == "n")
-                {
-                    again = false;
-                }
-            } while (again == true);
 
+            Console.Clear();
+            Console.WriteLine("Input a number 1-100! (this will just be to help you remember it, but you must still tell the comp if they are high or low. NO LYING TO THE COMPUTER.).");
+            num = int.Parse(Console.ReadLine());
+
+            if (num >= 1 && num <= 100)
+            {
+                CompPlaysGuesser(num);
+                do
+                {
+                    Console.WriteLine("Play again? Y for yes, N for no.");
+                    answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        Console.WriteLine("Input a number! (this will just be to help you remember it, but you must still tell the comp if they are high or low. NO LYING TO THE COMPUTER.).");
+                        num = int.Parse(Console.ReadLine());
+                        if (num >= 1 && num <= 100)
+                        {
+                            CompPlaysGuesser(num);
+                            again = true;
+                        }
+                        else
+                        {
+                            Console.WriteLine("No valid input" +
+                            "\nPress 'enter' to continue..");
+                            Console.ReadLine();
+                            Console.Clear();
+                        }
+                        
+                    }
+                    else if (answer == "n")
+                    {
+                        Console.Clear();
+                        iterations = 0;
+                        total = 0;
+                        count = 0;
+                        again = false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("No valid input" +
+                            "\nPress 'enter' to continue..");
+                        Console.ReadLine();
+                        Console.Clear();
+                    }
+                } while (again == true);
+            }
+            else
+            {
+                Console.WriteLine("No valid input" +
+                            "\nPress 'enter' to continue..");
+                Console.ReadLine();
+                Console.Clear();
+            }
         }
     }
 }
